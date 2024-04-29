@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <canvas id="img" width="300px" height="300px"></canvas> <br/>
+    <input type="checkbox" onchange="grayscale()" id="grayscale"> Grayscale <br/>
+    Red multiplier <input type="number" min="0" max="100" step="0.1" value="1" id="sliderR" onchange="changeR()"><br/>
+    Green multiplier <input type="number" min="0" max="100" step="0.1" value="1" id="sliderG" onchange="changeG()"><br/>
+    Blue multiplier <input type="number" min="0" max="100" step="0.1" value="1" id="sliderB" onchange="changeB()"><br/>
+    Alpha <input type="range" id="sliderA" name="vol" min="0" max="255" value="255" onchange="changeA()"/>
+    <script src="main.js"></script>
+</body>
+</html>
