@@ -1,16 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Photoshop</title>
+  <style>
+    body {
+      background-color: #6f6f6f;
+    }
+  </style>
 </head>
+
 <body>
-    <canvas id="img" width="300px" height="300px"></canvas> <br/>
-    <input type="checkbox" onchange="grayscale()" id="grayscale"> Grayscale <br/>
-    Red multiplier <input type="number" min="0" max="100" step="0.1" value="1" id="sliderR" onchange="changeR()"><br/>
-    Green multiplier <input type="number" min="0" max="100" step="0.1" value="1" id="sliderG" onchange="changeG()"><br/>
-    Blue multiplier <input type="number" min="0" max="100" step="0.1" value="1" id="sliderB" onchange="changeB()"><br/>
-    Alpha <input type="range" id="sliderA" name="vol" min="0" max="255" value="255" onchange="changeA()"/>
-    <script src="main.js"></script>
+  <div style="display: flex">
+    <div style="
+          display: flex;
+          flex-direction: column;
+          width: 20%;
+          background-color: #313b4b;
+          border-radius: 20px;
+        ">
+      <div style="margin-top: 20px">
+        <button id="browse-image">Import</button>
+        <button id="export-image" disabled>Export</button>
+        <button id="undo" disabled>Undo</button>
+        <button id="redo" disabled>Redo</button>
+        <button id="grayscale" disabled>Grayscale</button>
+        <button id="box-blur" disabled>Box Blur</button>
+        <button id="gauss-blur" disabled>Gauss Blur</button>
+        <button id="laplace" disabled>Laplace Filter</button>
+        <button id="sharpen" disabled>Sharpen</button>
+        <button id="unsharp-mask" disabled>Unsharp masking</button>
+        <button id="sobel" disabled>Sobel</button>
+      </div>
+      <div>
+        <i style="color: white">Threshold:</i><span id="threshold_val_disp" style="color: white; margin: 2px">0</span>
+        <input type="range" id="threshold_val" min="0" max="255" step="1" value="0" disabled />
+        <button id="threshold" disabled>Apply</button>
+      </div>
+
+      <div>
+        <br /><i style="color: white">Brightness:</i>
+        <button class="brightness" data="-10" disabled>-10</button>
+        <button class="brightness" data="-1" disabled>-1</button>
+        <button class="brightness" data="1" disabled>+1</button>
+        <button class="brightness" data="10" disabled>+10</button>
+      </div>
+      <div>
+        <br /><i style="color: white">Remove:</i>
+        <button class="remove" data="0" disabled>R</button>
+        <button class="remove" data="1" disabled>G</button>
+        <button class="remove" data="2" disabled>B</button>
+      </div>
+      <div>
+        <br /><i style="color: white">Emphasize:</i><span id="emphasize_val_disp"
+          style="color: white; margin: 2px">1</span>
+        <input type="range" id="emphasize_val" min="0" max="2" step="0.01" value="1" disabled />
+        <button class="emphasize" data="0" disabled>R</button>
+        <button class="emphasize" data="1" disabled>G</button>
+        <button class="emphasize" data="2" disabled>B</button>
+      </div>
+    </div>
+    <div style="height: 800px; width: 80%; align-content: center" id="img-pane">
+      <div id="image-box" style="width: fit-content; margin: auto; display: block">
+        <span id="dnd-helper">Import or drag and drop an image.</span>
+        <canvas id="image" style="display: none; max-width: 100%; max-height: 800px;"></canvas>
+      </div>
+    </div>
+  </div>
+  <canvas id="chart" style="background-color: white"></canvas>
+  <input type="file" id="image-input" hidden accept="image/*" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/gpu.js@latest/dist/gpu-browser.min.js"></script>
+  <script src="main.js" type="module"></script>
 </body>
+
 </html>
