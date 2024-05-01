@@ -96,7 +96,7 @@ document.getElementById("export-image").addEventListener("click", () => {
 
   let link = document.createElement("a");
   link.href = img;
-  link.download = "web-photoshop_" + dName + ".png";
+  link.download = "edited-" + dName + ".png";
   link.click();
 });
 document.getElementById("gauss-blur").addEventListener("click", () => {
@@ -247,7 +247,9 @@ document.getElementById("undo").addEventListener("click", () => {
   );
   updateGraph(ctx.getImageData(0, 0, image.width, image.height), graph);
 });
-
+document.getElementById("browse-image").addEventListener("click", () => {
+  imgInput.click();
+});
 document.addEventListener("keyup", (e) => {
   e.preventDefault();
   if (e.ctrlKey && !e.shiftKey && e.key === "z")
@@ -297,10 +299,6 @@ let convolution = gpu
   )
   .setGraphical(true);
 convolution.dynamicOutput = true;
-
-document.getElementById("browse-image").addEventListener("click", () => {
-  imgInput.click();
-});
 imgPanel.addEventListener("dragover", (e) => {
   e.preventDefault();
 });
